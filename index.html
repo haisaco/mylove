@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hai &#9829; Xuan</title>
+    <style>
+        .container {
+            background-image: url(./bg.jpg);
+            background-size: cover;
+        }
+
+        .content_area {
+            position: absolute;
+            right: 200px;
+            top: 30%;
+            font-size: 50px;
+            font-weight: bold;
+            color: red;
+        }
+        .avatar_love{
+            display: flex;
+            text-align: center;
+        }
+        .heart_center{
+            flex: 1;
+        }
+        .avatar_love .avatar_love_item{
+            flex: 2;
+        }
+        @media only screen and (max-device-width: 768px) {
+            .content_area {
+                top: 30%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="content_area">
+            <div class="avatar_love">
+                <div class="avatar_love_item">
+                    <img src="https://graph.facebook.com/100001768421496/picture?type=normal" />
+                </div>
+                <div class="heart_center">
+                    <span>&#9829;</span>
+                </div>
+                <div class="avatar_love_item">
+                    <img src="https://graph.facebook.com/100004281759151/picture?type=normal" />
+                </div>
+            </div>
+            <div id="timeoflove">
+
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            var height = $(window).height();
+            $(".container").css("height", height - 50 + "px");
+            caltimeoflove();
+        })
+        function caltimeoflove() {
+            var day = 0;
+            var month = 0;
+            var year = 0;
+            var startDate = new Date(2014, 7, 22);
+            var currentDate = new Date();
+            var timeDiff = Math.abs(currentDate.getTime() - startDate.getTime());
+            var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+            if (diffDays > 365) {
+                year = Math.floor(diffDays / 365)
+            }
+            if (year > 0) {
+                var diffDays = diffDays - (year * 365);
+                month = Math.floor(diffDays / 30);
+            } else {
+                month = Math.floor(diffDays / 30);
+            }
+            var _nday = Math.floor(month / 30);
+            if (_nday % 30 != 0) {
+                day = _nday - (month * 30);
+            } else {
+                day = 0;
+            }
+            $("#timeoflove").empty().append(year + " Năm " + month + " Tháng ");
+        }
+    </script>
+</body>
+
+</html>
